@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><a href="{{ url_for('student_dahsboard') }}">back to dashboard page</a><p>
+    <h1>Edit on your application </h1>
+
+
+    <p>Company Name:
+      {{ application['company'] }}<br>
+    </p>
+    <p> Application job title:
+      {{ application['title'] }}<br></p>
+    <p>Application Job link:
+      {{ application['link'] }}<br></p>
+
+<h2>your mentor's comments</h2>
+<table border="1">
+<tr>
+  <td>index</td>
+  <td>date</td>
+  <td>comment</td>
+</tr>
+{% for c in comments %}
+<tr>
+  <td>{{ loop.index }}</td>
+  <td>{{ c.entry_time }}</td>
+  <td>{{ c.note }}</td>
+</tr>
+
+{% endfor %}
+</table>
+
+    <h2>application history</h2>
+
+
+
+    <table border="1">
+    <tr>
+      <td>action_id</td>
+      <td>status</td>
+      <td>date</td>
+      <td>comment</td>
+    </tr>
+
+      {% for action in actions %}
+    <tr>
+
+      <td>{{ loop.index }}</td>
+      <td>{{ action.status }}</td>
+      <td>{{ action.date }}</td>
+      <td>{{ action.comment }}</td>
+
+
+    </tr>
+    {% endfor %}
+    <br>
+  </table>
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.status.label }}<br>
+          {{ form.status}}
+      </p>
+      <p>
+        {{ form.date.label }}<br>
+        {{ form.date }}
+      </p>
+        <p>
+          {{ form.comment.label }}<br>
+          {{ form.comment(size=128) }}<br>
+      </p>
+      <p>{{ form.save() }}</p>
+    </form>
+{% endblock %}

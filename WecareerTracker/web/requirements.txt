@@ -1,0 +1,14 @@
+Flask
+Flask-Login
+Werkzeug
+Flask-WTF
+psycopg2
+Flask-SQLAlchemy
+WTForms
+wtforms-html5
+flask
+SQLAlchemy
+is-safe-url
+flask-migrate
+psycopg2-binary
+gunicorn

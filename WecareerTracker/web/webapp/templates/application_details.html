@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><a href=" {{url_for('student_detail', id=student_id) }} ">back to student applications page</a></p>
+
+
+<h1>Details for this application:</h1>
+<div>
+company name:  {{ application.company }}<br>
+applying title:  {{ application.title }}<br>
+company appliction link:  {{ application.link }}<br>
+  </div>
+
+<table border="1">
+  <tr>
+    <td>index</td>
+    <td>status</td>
+    <td>change date</td>
+    <td>student comment</td>
+  </tr>
+
+    {% for a in list %}
+
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ status[a.status] }}</td>
+      <td>{{ a.date }}</td>
+      <td>{{ a.comment }}</td>
+
+      </tr>
+      {% endfor %}
+
+  </table>
+<div>
+<h2>Here's your comments so far for this application</h2>
+<table border="1">
+  <tr>
+    <td>index</td>
+    <td>input date</td>
+    <td>your comment</td>
+    </tr>
+    {% for c in comment %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ c.entry_time }}</td>
+      <td>{{ c.note }}</td>
+      </tr>
+      {% endfor %}
+</table>
+</div>
+
+  <form action="" method="post">
+    Mentor to input the comment:<br>
+    <input type="text" name="comment" >
+    <input type="submit" value="Submit">
+  </form>
+  <br>
+
+{% endblock %}

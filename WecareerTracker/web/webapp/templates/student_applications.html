@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><a href="{{ url_for('mentor_dashboard') }}">back to dashboard</a></p>
+<h1>Applications for your mentee {{ student.name }}</h1>
+
+<h2>All the applications: </h2>
+
+<table border="1">
+  <tr>
+    <td>application id</td>
+    <td>company</td>
+    <td>job title</td>
+    <td>link</td>
+    <td>latest status</td>
+    <td>status change date</td>
+    <td>student comment</td>
+    <td>action</td>
+  </tr>
+
+    {% for a in list %}
+
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ a.application.company }}</td>
+      <td>{{ a.application.title }}</td>
+      <td>{{ a.application.link }}</td>
+      <td>{{ status[a.action[0].status] }}</td>
+      <td>{{ a.action[0].date }}</td>
+      <td>{{ a.action[0].comment }}</td>
+      <td>
+<a href="{{ url_for('application_detail', id=a.application.application_id) }}">view datails<br>
+      </td>
+      </tr>
+      {% endfor %}
+
+  </table>
+
+
+{% endblock %}

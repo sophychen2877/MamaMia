@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hello, Mentor {{ current_user.name }}</h1>
+
+<table border="2">
+  {% for s in students %}
+  <tr>
+    <td><a href="{{ url_for('student_detail', id=s.id) }}">Student Name: {{ s.name }}</td>
+  </tr>
+  <table border="1">
+  <tr>
+
+    <td>application id</td>
+    <td>company</td>
+    <td>job title</td>
+    <td>link</td>
+
+    </tr>
+    {% for a in applications %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ a.company }}</td>
+    <td>{{ a.title }}</td>
+    <td>{{ a.link }}</td>
+  </tr>
+    {% endfor %}
+  </table>
+    {% endfor %}
+
+  </table>
+
+{% endblock %}

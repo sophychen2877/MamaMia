@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><a href="{{ url_for('mentor_register') }}">register your mentors here:</a></h1>
+
+
+<h1>mentor student pair selection</h1>
+<form action="{{ url_for('mentorship') }}" method="post">
+  <div class="form-group">
+      <label for="mentor">mentor</label><br>
+      <select class="form-control" id="mentor" name="mentor">
+        {% for m in mentors %}
+        <option value="{{ m.id }}">{{ m.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+<div class="form-group">
+    <label for="student">student selection</label><br>
+    <select multiple class="form-control" name="student" id="student">
+      {% for s in students %}
+      <option value="{{ s.id }}">{{ s.name }}</option>
+      {% endfor %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="start">Mentorship start on:</label><br>
+    <input type="date" name="mentorship_start"><br>
+    <small>input date format YYYY-mm-dd</small>
+
+</div>
+
+
+<input type="submit" name="confirm_mentorship" value="confirm" />
+</form>
+
+<h2>current pairing
+  <table border="2">
+    <tr>
+      <td>index</td>
+      <td>mentor</td>
+      <td>student</td>
+      <td>active_date</td>
+      <td>action</td>
+
+    </tr>
+    {% for m in mentorship %}
+    <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ m.mentor_name }}</td>
+    <td>{{ m.student_name }}</td>
+    <td>{{ m.date }}</td>
+    <td>
+      <form action="{{ url_for('end_mentorship', id=m.id) }}" method="post">
+      <input type="submit" name="delete" value="End Mentorship"></input>
+      </form>
+    </td>
+  </tr>
+    {%endfor%}
+  </table>
+</h2>
+
+
+<script>
+</script>
+
+{% endblock %}

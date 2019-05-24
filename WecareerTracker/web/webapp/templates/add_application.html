@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Add your recent application action</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.app_form.hidden_tag() }}
+        {{ form.act_form.hidden_tag() }}
+        <p>
+            {{ form.app_form.company.label }}<br>
+            {{ form.app_form.company(size=64) }}<br>
+            {% for error in form.app_form.company.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.app_form.title.label }}<br>
+            {{ form.app_form.title(size=64) }}<br>
+            {% for error in form.app_form.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.app_form.link.label }}<br>
+            {{ form.app_form.link(size=64) }}<br>
+            {% for error in form.app_form.link.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+          {{ form.act_form.status.label }}<br>
+            {{ form.act_form.status }}
+        </p>
+        <p>
+          {{ form.act_form.date.label }}<br>
+          {{ form.act_form.date }}
+          <small>date format is YYYY-mm-dd</small>
+        </p>
+          <p>
+            {{ form.act_form.comment.label }}<br>
+            {{ form.act_form.comment(size=128) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+        </form>
+
+{% endblock %}

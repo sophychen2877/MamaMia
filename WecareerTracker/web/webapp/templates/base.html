@@ -1,0 +1,51 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Welcome to your online application portal</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            trackers:
+
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('front_page') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+            {% else %}
+            {% if current_user.is_mentor() %}
+            <a href="{{ url_for('mentor_dashboard') }}">Home</a>
+            {% elif current_user.is_admin() %}
+            <a href="{{ url_for('mentorship') }}">Home</a>
+            {% else %}
+            <a href="{{ url_for('student_dahsboard') }}">Home</a>
+            {%endif%}
+            <a href="{{ url_for('logout') }}">logout</a>
+            {%endif%}
+
+        </div>
+
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+
+    </body>
+    <footer>
+    <div id="footer">
+    {% block footer %}
+    &copy; Copyright 2019 by <a href="http://weclouddata.com">WeCloudData</a>.
+    {% endblock %}
+  </div>
+</footer>
+
+</html>

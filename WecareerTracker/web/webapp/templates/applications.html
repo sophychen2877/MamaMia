@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>hi, {{ current_user.name }}</h1>
+{% if mentor_name %}
+<p>your mentor is {{ mentor_name }}</p>
+{% endif %}
+<h2>Here's an overview of your application statuses</h2>
+
+
+<h2>  <a href="{{ url_for('add_application') }}">add your applications</a></h2>
+<table border="1">
+<tr>
+  <td>application id</td>
+  <td>company</td>
+  <td>job title</td>
+  <td>link</td>
+  <td>latest status for this application</td>
+  <td>latest comment from your mentor</td>
+  <td>actions</td>
+</tr>
+{% for appl in application %}
+<tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ appl.company }}</td>
+    <td>{{ appl.title }}</td>
+      <td><a href="http://{{ appl.link }}">link</a></td>
+      <td>{{ appl.status }}</td>
+      {% if appl.note %}
+      <td>{{ appl.note.note }}</td>
+      {% else %}
+      <td></td>
+      {% endif %}
+      <td><a href="{{ url_for('edit_application', id=appl.id) }}">Edit</a><br>
+          <form action="{{url_for('delete_application', id=appl.id)}}" method="post">
+            <input type="submit" value="Delete" />
+          </form>
+      </td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
