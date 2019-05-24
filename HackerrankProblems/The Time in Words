@@ -1,0 +1,40 @@
+hour = int(input())
+minute =int(input())
+
+number_map ={1:'one', 2:'two', 3:'three', 4:'four', 5:'five', 6:'six', 7:'seven', 8:'eight', 9:'nine', 10:'ten', 11:'eleven', 12:'twelve', 13:'thirteen',14:'fourteen', 15:'quarter', 16: 'sixteen', 17: 'seventeen', 18: 'eighteen', 19:'nineteen', 20: 'twenty', 30:'half'}
+
+#build the string for minutes over 20
+#input int m >20 and m<30
+#return 22-> str twenty two
+def built_20_str(m):
+    return number_map[20]+' '+number_map[m-20]
+
+def hour_display(minute,hour):
+    if minute == 0 or minute == 60:
+        return ' o\' clock'
+    elif minute <= 30:
+        return ' past ' + number_map[hour]
+    elif minute >30:
+        return ' to ' + number_map[hour+1]
+    return None
+
+if minute == 0:
+    print(number_map[hour] + hour_display(minute,hour)) 
+elif minute == 1:
+    print(number_map[minute] + ' minute'+hour_display(minute,hour))
+elif (minute>1 and minute<15) or (minute>15 and minute<21):
+    print(number_map[minute] + ' minutes' +hour_display(minute,hour))
+elif minute==15 or minute==30:
+    print(number_map[minute] +hour_display(minute,hour))
+elif minute>20 and minute<30:
+    print(built_20_str(minute) + ' minutes' + hour_display(minute,hour)) 
+elif minute>30 and minute<41:
+    print(built_20_str(60-minute) + ' minutes' + hour_display(minute,hour))
+elif minute ==45:
+    print(number_map[60-minute] +hour_display(minute,hour))
+elif (minute>45 and minute<59) or (minute>45 and minute <41):
+    print(number_map[60-minute] + ' minutes' +hour_display(minute,hour))
+elif minute ==59:
+    print(number_map[60-minute] + ' minute'+hour_display(minute,hour))
+elif minute ==60:
+    print(number_map[hour+1] + hour_display(minute,hour))

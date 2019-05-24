@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<body>
+    <h3>Prediction Form</h3>
+
+<div>
+  <form action = "http://localhost:5000/model/<string:model_name>" methods=['POST','PUT']>
+    <label for="ml_model_type">MachineLearningModel</label>
+    <select id="model" name="model">
+      <option value="0">RandomForestClassifier</option>
+      <option value="1">DecisionTreeClassifier</option>
+    </select>
+    <br>
+  <label for="params">Model parameter inputs</label><br>
+  <label for="n_estimators">n_estimators</label><br>
+  <input type="text" id="n_estimators" name="n_estimators"><br>
+  <label for="criterion">criterion</label>
+  <select id="criterion" name="criterion">
+    <option value="0">gini</option>
+    <option value="1">entropy</option>
+  </select>
+  <br>
+  <label for="max_depth">n_estimators</label>
+  <input type="text" id="max_depth" name="max_depth"><br>
+  <label for="min_samples_split">min_samples_split</label>
+  <input type="text" id="min_samples_split" name="min_samples_split"><br>
+  <label for="min_samples_leaf">min_samples_leaf</label>
+  <input type="text" id="min_samples_leaf" name="min_samples_leaf"><br>
+  <label for="min_weight_fraction_leaf">min_weight_fraction_leaf</label>
+  <input type="text" id="min_weight_fraction_leaf" name="min_weight_fraction_leaf"><br>
+  <label for="max_features">max_features</label>
+  <input type="text" id="max_features" name="max_features"><br>
+  <label for="max_leaf_nodes">max_leaf_nodes</label>
+  <input type="text" id="max_leaf_nodes" name="max_leaf_nodes"><br>
+  <label for="min_impurity_decrease">min_impurity_decrease</label>
+  <input type="text" id="min_impurity_decrease" name="min_impurity_decrease"><br>
+  <label for="min_impurity_split">min_impurity_split</label>
+  <input type="text" id="min_impurity_split" name="min_impurity_split"><br>
+  <label for="bootstrap">bootstrap</label>
+  <select id="bootstrap" name="bootstrap">
+    <option value="0">True</option>
+    <option value="1">False</option></select><br>
+    <select id="oob_score" name="oob_score">
+      <option value="0">True</option>
+      <option value="1">False</option></select><br>
+      <label for="n_jobs">n_jobs</label>
+      <input type="text" id="n_jobs" name="n_jobs"><br>
+      <label for="random_state">random_state</label>
+      <input type="text" id="random_state" name="random_state"><br>
+      <label for="verbose">verbose</label>
+      <input type="text" id="verbose" name="verbose"><br>
+      <select id="warm_start" name="warm_start">
+        <option value="0">True</option>
+        <option value="1">False</option></select><br>
+
+      <input type="submit" value="Submit">
+      </form>
+    </div>
+    </body>
+    </html>

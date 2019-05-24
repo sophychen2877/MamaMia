@@ -1,0 +1,5 @@
+Flask==1.0.2
+Pandas==0.23.4
+Scikit-learn==0.20.3
+Flask_SQLAlchemy==2.3
+Flask_WTF==0.14

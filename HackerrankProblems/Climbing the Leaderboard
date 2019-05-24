@@ -1,0 +1,26 @@
+def climbingLeaderboard(scores, alice):  
+    result = []
+    #method2 - add alice's score to the main scoring board, sort then get the index
+    for s in alice:
+        scoring_board = list(set(scores[:]+[s]))
+        scoring_board.sort(reverse=True)
+        rank = scoring_board.index(s)
+        result.append(rank+1)
+    #method1 - not dealing with the scores, runtime is O(nm)
+    '''
+    num = len(scores)
+    for s in alice:
+        rank = 1
+        i = 0
+        while i<num:
+            if s<scores[i]:
+                if i+1==num:
+                    rank+=1
+                elif scores[i+1]<scores[i]:
+                    rank+=1
+            i+=1
+        result.append(rank)
+    
+    '''
+    return result
+

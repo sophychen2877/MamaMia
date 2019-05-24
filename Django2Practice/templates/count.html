@@ -1,0 +1,7 @@
+<a href='{% url 'home' %}'>return to home</a>
+<h1>full text is: {{ fulltext }}</h1>
+
+{% for word, count in counter %}
+{{ word }} - {{ count }}<br />
+
+{% endfor %}
