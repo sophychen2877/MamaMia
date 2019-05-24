@@ -10,10 +10,10 @@ from textblob import TextBlob
 
 
 #Variables that contains the user credentials to access Twitter API
-consumer_key = 'p6LYSyzatP2kruNKgHIBUaNg5'
-consumer_secret = 'pzDbz18SGfC2TyyZB7ULADJgG38SDVj61KLfG1O7SI2cpm24Fe'
-access_token = '717153459380871168-0pKmljX78mhlqhUTFbEG861H2ECidSy'
-access_token_secret = '4O9NaabkzsA4ZGj33v0cu0filYA9KNDfSHVf1WyQPFzWq'
+consumer_key = ''
+consumer_secret = ''
+access_token = ''
+access_token_secret = ''
 
 def get_sentiment(tweet):
     return TextBlob(tweet).sentiment
@@ -48,9 +48,9 @@ class StdOutListener(StreamListener):
 
 if __name__ == '__main__':
 
-    conn = boto.dynamodb2.connect_to_region(region_name='us-east-1',
-                                            aws_access_key_id='AKIASVYZCILFWWQRXE6Q',
-                                            aws_secret_access_key='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')
+    conn = boto.dynamodb2.connect_to_region(region_name='',
+                                            aws_access_key_id='',
+                                            aws_secret_access_key='')
                                             
 
     #This handles Twitter authetification and the connection to Twitter Streaming API
