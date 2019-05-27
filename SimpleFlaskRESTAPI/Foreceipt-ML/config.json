@@ -1,7 +1,0 @@
-{
-  "RESULT_TOPIC": "texts on the receipt",
-  "RESULT_BUCKET": "receipt-texts",
-  "TRANSLATE_TOPIC": "[YOUR_TRANSLATE_TOPIC_NAME]",
-  "TRANSLATE": false,
-  "TO_LANG": ["en", "fr", "es", "ja", "ru"]
-}
