@@ -4,6 +4,7 @@
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType,DoubleType,TimestampType}
 import org.apache.spark.sql.Row
+import org.apache.spark.sql.functions.udf
 
 val sqlContext = new SQLContext(sc)
 val customSchema = StructType(Array(
@@ -39,3 +40,14 @@ val step1 = df.select("timestamp", "backend:port", "request").withColumn("epoch"
 val step2 = step1.withColumn("collected", collect_list(struct("*"))
 .over(Window.partitionBy(col("backend")).orderBy("epoch"))).groupBy("backend").agg(max("collected"))
 // step2 start gathering the data to the collected column and give us an view so that we can pick the max which collect all the necessary data points(partition by backend column and order by epoch timestamp)
+
+sessionizeData = udf{(data:Seq[row]) => 
+   val session = 900
+   data.map(dp =>(dp.getLong(2) / session, (dp.getString(1),dp.getLong(2), dp.getString(2))))
+   .groupBy(filed => filed._1).mapValues(v => v.last._2._2 - v.head._2._2 / v.size.toDouble))
+}
+//defined function to call on data column
+
+val step3 = step2.withColumn("newcol", sessionizeData($"collected"))
+
+
