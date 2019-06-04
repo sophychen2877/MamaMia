@@ -21,4 +21,4 @@ You must use OOP and classes in some portion of your game. You can not just use 
 
 purpose of this exercise is to grasp my python skills.
 
-time used -> 5 days
+time used -> 2 days
